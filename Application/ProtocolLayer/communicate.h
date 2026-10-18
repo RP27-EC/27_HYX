@@ -3,22 +3,22 @@
 
 #include "rp_math.h"
 
-#define ID_BOARD_TX1 0x0C1   // ÔÆÌ¨·´À¡
-#define ID_BOARD_TX2 0x0C2   // ±£Áô
-#define ID_BOARD_RX1 0x0D1   // ÔÆÌ¨Ä£Ê½+×´Ì¬
-#define ID_BOARD_RX2 0x0D2   // ÔÆÌ¨Ä¿±ê½Ç
+#define ID_BOARD_TX1 0x0C1   // äº‘å°åé¦ˆ
+#define ID_BOARD_TX2 0x0C2   // ä¿ç•™
+#define ID_BOARD_RX1 0x0D1   // äº‘å°æ¨¡å¼+çŠ¶æ€
+#define ID_BOARD_RX2 0x0D2   // äº‘å°ç›®æ ‡è§’
 
 typedef struct {
-    float yaw_mec;           // ÔÆÌ¨µç»úÏà¶Ô½Ç¶È(rad)
-    float yaw_imu;           // IMU ¾ø¶Ô Yaw(rad)
+    float yaw_mec;           // äº‘å°ç”µæœºç›¸å¯¹è§’åº¦(rad)
+    float yaw_imu;           // IMU ç»å¯¹ Yaw(rad)
 } C_Board_Tx_t;
 
 typedef struct {
-    uint8_t gimbal_mode;     // 0->»úĞµ 1->ÍÓÂİ 2->Ë¯Ãß
-    uint8_t rc_online;       // Ò£¿ØÆ÷×´Ì¬
-    float yaw_mec_tar;       // »úĞµÄ£Ê½Ä¿±ê(rad)
-    float pitch_mec_tar;     // Pitch Ä¿±ê(rad)
-    uint16_t heartbeat;      // ¿ç°åÍ¨ĞÅĞÄÌø
+    uint8_t gimbal_mode;     // 0->æœºæ¢° 1->é™€èº 2->ç¡çœ 
+    uint8_t rc_online;       // é¥æ§å™¨çŠ¶æ€
+    float yaw_mec_tar;       // æœºæ¢°æ¨¡å¼ç›®æ ‡(rad)
+    float pitch_mec_tar;     // Pitch ç›®æ ‡(rad)
+    uint16_t heartbeat;      // è·¨æ¿é€šä¿¡å¿ƒè·³
 } C_Board_Rx_t;
 
 extern C_Board_Tx_t C_Board_Tx;

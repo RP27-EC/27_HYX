@@ -3,13 +3,13 @@
 
 #include "pid.h"
 
-#define RAD2DEG          (180.0f/PI)   //»¡¶È×ª¶È
-#define DEG2RAD          (PI/180.0f)   //¶È×ª»¡¶È
-#define YAW_MEC          0		       //»úĞµÄ£Ê½
-#define YAW_IMU          1		       //ÍÓÂİÒÇÄ£Ê½
-#define YAW_SLEEP        2		       //¹Ø¿ØÄ£Ê½
-#define YAW_DEAD_DEG     0.2f		   //»úĞµÄ£Ê½ËÀÇø½Ç
-#define GYRO_DEAD_DEG    1.0f		   //ÍÓÂİÒÇÄ£Ê½ËÀÇø½Ç
+#define RAD2DEG          (180.0f/PI)   //å¼§åº¦è½¬åº¦
+#define DEG2RAD          (PI/180.0f)   //åº¦è½¬å¼§åº¦
+#define YAW_MEC          0		       //æœºæ¢°æ¨¡å¼
+#define YAW_IMU          1		       //é™€èºä»ªæ¨¡å¼
+#define YAW_SLEEP        2		       //å…³æ§æ¨¡å¼
+#define YAW_DEAD_DEG     0.2f		   //æœºæ¢°æ¨¡å¼æ­»åŒºè§’
+#define GYRO_DEAD_DEG    1.0f		   //é™€èºä»ªæ¨¡å¼æ­»åŒºè§’
 #define GYRO_OUTER_KP    40.0f
 #define GYRO_INNER_KP    0.025f
 #define MEC_OUTER_KP     15.0f	   
@@ -17,12 +17,12 @@
 
 typedef struct Gimbal_Yaw_struct_t
 {
-    float current_angle;               //µç»úÏà¶Ô½Ç¶È(¶È)
-    float ang_vel;                     //½ÇËÙ¶È(¶È/Ãë)
-    float target_angle;                //Ä¿±ê½Ç¶È(¶È)
-    float output_torque;               //Êä³öÁ¦¾Ø
-    pid_ctrl_t yaw_outer;              //Î»ÖÃ»·
-    pid_ctrl_t yaw_inner;              //ËÙ¶È»·
+    float current_angle;               //ç”µæœºç›¸å¯¹è§’åº¦(åº¦)
+    float ang_vel;                     //è§’é€Ÿåº¦(åº¦/ç§’)
+    float target_angle;                //ç›®æ ‡è§’åº¦(åº¦)
+    float output_torque;               //è¾“å‡ºåŠ›çŸ©
+    pid_ctrl_t yaw_outer;              //ä½ç½®ç¯
+    pid_ctrl_t yaw_inner;              //é€Ÿåº¦ç¯
     void (*update)(struct Gimbal_Yaw_struct_t *gimbal);
 } Gimbal_Yaw_t;
 

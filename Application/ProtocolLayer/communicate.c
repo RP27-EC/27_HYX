@@ -12,7 +12,7 @@ static uint8_t tx_buf[8];
 static uint16_t float_to_uint(float x, float x_min, float x_max, uint8_t bits);
 static float uint_to_float(uint16_t x_int, float x_min, float x_max, uint8_t bits);
 
-//·¢ËÍÔÆÌ¨µ±Ç°½Ç¶È
+//å‘é€äº‘å°å½“å‰è§’åº¦
 void C_Board_Send(void)
 {
     C_Board_Tx.yaw_mec=Yaw_Motor.rx_info->motor_angle;
@@ -25,14 +25,14 @@ void C_Board_Send(void)
     tx_buf[3]=t2&0xFF;
     CAN_SendData(&hcan2,ID_BOARD_TX1,tx_buf);
 }
-//½ÓÊÕÔÆÌ¨Ä£Ê½ºÍÒ£¿ØÆ÷×´Ì¬
+//æ¥æ”¶äº‘å°æ¨¡å¼å’Œé¥æ§å™¨çŠ¶æ€
 void C_Board_Rx_01(uint8_t *rxbuf)
 {
     C_Board_Rx.gimbal_mode=rxbuf[0];
     C_Board_Rx.rc_online=rxbuf[1];
     C_Board_Rx.heartbeat=0;
 }
-//½ÓÊÕÄ¿±ê½Ç¶È
+//æ¥æ”¶ç›®æ ‡è§’åº¦
 void C_Board_Rx_02(uint8_t *rxbuf)
 {
     uint16_t t1=((uint16_t)rxbuf[0]<<8)|rxbuf[1];

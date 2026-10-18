@@ -4,15 +4,15 @@
 #include "Chassis_motor.h"
 #include "gimbal_yaw.h"									  
 
-static float fol_tgt_deg=FOLLOW_TARGET_DEG;   //µ±Ç°¶ÔÆëÎ»
-static float follow_wz=0.0f; 				  //ÍÓÂİÒÇµ×ÅÌ¸úËæÊä³ö
-static float spin_wz=0.0f;  			      //Ğ¡ÍÓÂİ×ÔĞıÊä³ö
+static float fol_tgt_deg=FOLLOW_TARGET_DEG;   //å½“å‰å¯¹é½ä½
+static float follow_wz=0.0f; 				  //é™€èºä»ªåº•ç›˜è·Ÿéšè¾“å‡º
+static float spin_wz=0.0f;  			      //å°é™€èºè‡ªæ—‹è¾“å‡º
 
 static void  chassis_vector_to_rpm(float vx,float vy,float wz,float rpm[4]);
 static float chassis_follow_gimbal(void);
 static float chassis_spin(void);
 
-//µ×ÅÌÔË¶¯Ñ§Äæ½âËã
+//åº•ç›˜è¿åŠ¨å­¦é€†è§£ç®—
 static void chassis_vector_to_rpm(float vx,float vy,float wz,float rpm[4])
 {
     float v1=-vx-vy+wz;
@@ -25,7 +25,7 @@ static void chassis_vector_to_rpm(float vx,float vy,float wz,float rpm[4])
 	rpm[3]=v4*CHASSIS_REDUCTION*30.0f/(PI*R_CHASSIS_WHEEL);
 }
 
-//ÍÓÂİÒÇÄ£Ê½µ×ÅÌ×Ô×ªÁ¿¼ÆËã
+//é™€èºä»ªæ¨¡å¼åº•ç›˜è‡ªè½¬é‡è®¡ç®—
 static float chassis_follow_gimbal(void)
 {
     float rel=Board_Rx.yaw_mec*(180.0f/PI); 
@@ -42,7 +42,7 @@ static float chassis_follow_gimbal(void)
     }
     if(fabsf(err)<FOLLOW_DEAD_DEG) err=0.0f;
     want=-FOLLOW_WZ_MAX*(err/FOLLOW_FULL_DEG);
-    //Ğ±ÆÂÏŞËÙ+ÏŞ·ù
+    //æ–œå¡é™é€Ÿ+é™å¹…
     step=FOLLOW_WZ_MAX*(CTRL_DT/FOLLOW_RAMP_S);
     if(want> follow_wz+step) want= follow_wz+step;
     if(want< follow_wz-step) want= follow_wz-step;
@@ -52,7 +52,7 @@ static float chassis_follow_gimbal(void)
     return follow_wz;
 }
 
-//Ğ¡ÍÓÂİÄ£Ê½µ×ÅÌ×Ô×ªÁ¿¼ÆËã
+//å°é™€èºæ¨¡å¼åº•ç›˜è‡ªè½¬é‡è®¡ç®—
 static float chassis_spin(void)
 {
     float want=SPIN_WZ_MAX;
@@ -70,25 +70,25 @@ void Chassis_ctrl(void)
 	if(rc_sensor.errno==DEV_ID_ERR||
 	   rc_sensor.work_state==DEV_OFFLINE||
 	   rc_sensor.info->s1==RC_SW_UP){
-		   //µçÁ÷Ö±½ÓÈ«·¢Áã·À·è×ª
+		   //ç”µæµç›´æ¥å…¨å‘é›¶é˜²ç–¯è½¬
 		   tx_buf[0]=tx_buf[1]=
 		   tx_buf[2]=tx_buf[3]=
 		   tx_buf[4]=tx_buf[5]=
 		   tx_buf[6]=tx_buf[7]=0;
 		   CAN_SendData(&hfdcan1,0x200,tx_buf);
-		   //»ı·ÖÇåÁã
+		   //ç§¯åˆ†æ¸…é›¶
 		   pid_clear(L_F_Wheel.ctrl->speed_ctrl);
 		   pid_clear(R_F_Wheel.ctrl->speed_ctrl);
 		   pid_clear(L_B_Wheel.ctrl->speed_ctrl);
 		   pid_clear(R_B_Wheel.ctrl->speed_ctrl);
-		   //·ÀÏÂ´Î¿Ø³µì­ËÙ
+		   //é˜²ä¸‹æ¬¡æ§è½¦é£™é€Ÿ
 		   L_F_Wheel.ctrl->speed_ctrl->target=
 		   R_F_Wheel.ctrl->speed_ctrl->target=
 		   L_B_Wheel.ctrl->speed_ctrl->target=
 		   R_B_Wheel.ctrl->speed_ctrl->target=0;
 		   follow_wz=spin_wz=0.0f;              
 	}else{
-		//¹éÒ»»¯´¦Àí+ËÀÇø
+		//å½’ä¸€åŒ–å¤„ç†+æ­»åŒº
 		float vx= DeathZoom(rc_sensor.info->ch3/RC_MAX,0.0f,0.1f)*MAX_SPEED;
 		float vy=-DeathZoom(rc_sensor.info->ch2/RC_MAX,0.0f,0.1f)*MAX_SPEED; 
 		float wz= DeathZoom(rc_sensor.info->ch0/RC_MAX,0.0f,0.1f)*MAX_SPIN_SPEED;
@@ -106,7 +106,7 @@ void Chassis_ctrl(void)
 			follow_wz=0.0f;
 			spin_wz=0.0f;
 		}
-		//Ğ¡ÍÓÂİËÙ¶È·Ö½â->ºÏËÙ¶ÈÖ¸Ïò¶ÔÆëÎ»ÖÃ
+		//å°é™€èºé€Ÿåº¦åˆ†è§£->åˆé€Ÿåº¦æŒ‡å‘å¯¹é½ä½ç½®
 		if(Gimbal_Yaw.mode==YAW_GYRO && RC_SW2_VALUE==RC_SW_DOWN)
 		{
 			float a=Board_Rx.yaw_mec;
@@ -124,12 +124,12 @@ void Chassis_ctrl(void)
 			vy=-vy;
 		}
 		chassis_vector_to_rpm(vx,vy,wz,rpm_target);
-		//Éè¶¨Ä¿±ê×ªËÙ
+		//è®¾å®šç›®æ ‡è½¬é€Ÿ
 		L_F_Wheel.ctrl->speed_ctrl->target=rpm_target[0];
 		R_F_Wheel.ctrl->speed_ctrl->target=rpm_target[1];
 		L_B_Wheel.ctrl->speed_ctrl->target=rpm_target[2];
 		R_B_Wheel.ctrl->speed_ctrl->target=rpm_target[3];
-		//PIDÖ´ĞĞ
+		//PIDæ‰§è¡Œ
 		L_F_Wheel.single_set_speed(&L_F_Wheel);
 		R_F_Wheel.single_set_speed(&R_F_Wheel);
 		L_B_Wheel.single_set_speed(&L_B_Wheel);

@@ -5,10 +5,10 @@
 								   
 Gimbal_Yaw_t Gimbal_Yaw;           
 								   
-static float gyro_tar_deg=0.0f;    //ÍÓÂİÒÇÄ£Ê½Ä¿±ê½Ç(¶È) 
-static uint8_t  up_step_last=0;    //ÉÏÒ»´ÎµÄ²¦ÂÖÉÏ²¦×´Ì¬
-static uint8_t  u_turn_hold=0;     //µôÍ·½øĞĞ±êÊ¶->·À×Ô¶¯Ë«ÎÈÌ¬·­»Ø
-static uint16_t u_turn_tick=0;	   //µôÍ·³¬Ê±¼ÆÊı
+static float gyro_tar_deg=0.0f;    //é™€èºä»ªæ¨¡å¼ç›®æ ‡è§’(åº¦) 
+static uint8_t  up_step_last=0;    //ä¸Šä¸€æ¬¡çš„æ‹¨è½®ä¸Šæ‹¨çŠ¶æ€
+static uint8_t  u_turn_hold=0;     //æ‰å¤´è¿›è¡Œæ ‡è¯†->é˜²è‡ªåŠ¨åŒç¨³æ€ç¿»å›
+static uint16_t u_turn_tick=0;	   //æ‰å¤´è¶…æ—¶è®¡æ•°
 
 static void Yaw_Mec_Target_Config(void);
 static void Yaw_Gyro_Target_Config(void);
@@ -53,10 +53,10 @@ static void Gimbal_Yaw_Update(Gimbal_Yaw_t *Gimbal_Yaw)
 	   rc_sensor.work_state==DEV_OFFLINE||
 	   RC_SW1_VALUE==RC_SW_UP||Board_Rx.heartbeat>100)
          Gimbal_Yaw->mode=YAW_SLEEP;
-    else if(RC_SW2_VALUE==RC_SW_UP)		//ÓÒ²¦ÉÏÎ»->»úĞµ
-         Gimbal_Yaw->mode=YAW_MEC;      //    ÖĞÎ»->ÍÓÂİÒÇ 
-    else Gimbal_Yaw->mode=YAW_GYRO;     //    ÏÂÎ»->Ğ¡ÍÓÂİ 
-	//»úĞµÄ£Ê½²¦ÂÖÉÏ²¦ÊµÏÖµôÍ·
+    else if(RC_SW2_VALUE==RC_SW_UP)		//å³æ‹¨ä¸Šä½->æœºæ¢°
+         Gimbal_Yaw->mode=YAW_MEC;      //    ä¸­ä½->é™€èºä»ª 
+    else Gimbal_Yaw->mode=YAW_GYRO;     //    ä¸‹ä½->å°é™€èº 
+	//æœºæ¢°æ¨¡å¼æ‹¨è½®ä¸Šæ‹¨å®ç°æ‰å¤´
 	if(rc_sensor.info->thumbwheel.step[RC_TB_UP]!=up_step_last)
     {
         up_step_last=rc_sensor.info->thumbwheel.step[RC_TB_UP];
@@ -83,10 +83,10 @@ static void Gimbal_Yaw_Update(Gimbal_Yaw_t *Gimbal_Yaw)
 					float u_err=Gimbal_Yaw->target_rad-Board_Rx.yaw_mec;
 					while(u_err> PI) u_err-=2*PI;
 					while(u_err<-PI) u_err+=2*PI;
-					//µôÍ·³É¹¦->½øĞĞ±êÊ¶Î»ÖÃÁã
+					//æ‰å¤´æˆåŠŸ->è¿›è¡Œæ ‡è¯†ä½ç½®é›¶
 					if(fabsf(u_err)<3.0f*PI/180.0f) u_turn_hold=0;
 				}
-				//¹ı2ÃëµôÍ·Ê§°Ü->·ÅÆú
+				//è¿‡2ç§’æ‰å¤´å¤±è´¥->æ”¾å¼ƒ
 				if(++u_turn_tick>2000) u_turn_hold=0;               
 			}
 			else

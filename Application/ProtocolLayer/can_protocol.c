@@ -6,22 +6,22 @@
 #include "cap.h"
 
 /**
- *  @brief  CAN1 接收数据
+ *  @brief  CAN1 鎺ユ敹鏁版嵁
  */
 void CAN1_rxDataHandler(uint32_t rxId, uint8_t *rxBuf)
 {
 	switch (rxId)
 	{
-        case 0x201: R_F_Wheel.rx(&R_F_Wheel,rxBuf); break; //右前反馈
-        case 0x202: R_B_Wheel.rx(&R_B_Wheel,rxBuf); break; //右后反馈
-        case 0x203: L_F_Wheel.rx(&L_F_Wheel,rxBuf); break; //左前反馈
-        case 0x204: L_B_Wheel.rx(&L_B_Wheel,rxBuf); break; //左后反馈
+        case 0x201: R_F_Wheel.rx(&R_F_Wheel,rxBuf); break; //鍙冲墠鍙嶉
+        case 0x202: R_B_Wheel.rx(&R_B_Wheel,rxBuf); break; //鍙冲悗鍙嶉
+        case 0x203: L_F_Wheel.rx(&L_F_Wheel,rxBuf); break; //宸﹀墠鍙嶉
+        case 0x204: L_B_Wheel.rx(&L_B_Wheel,rxBuf); break; //宸﹀悗鍙嶉
 		default: break;
 	}
 }
 
 /**
- *  @brief  CAN2 接收数据
+ *  @brief  CAN2 鎺ユ敹鏁版嵁
  */
 void CAN2_rxDataHandler(uint32_t rxId, uint8_t *rxBuf)
 {
@@ -34,7 +34,7 @@ void CAN2_rxDataHandler(uint32_t rxId, uint8_t *rxBuf)
 }
 
 /**
- *  @brief  CAN3 接收数据
+ *  @brief  CAN3 鎺ユ敹鏁版嵁
  */
 void CAN3_rxDataHandler(uint32_t rxId, uint8_t *rxBuf)
 {

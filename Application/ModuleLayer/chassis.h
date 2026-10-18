@@ -1,22 +1,22 @@
 #ifndef __CHASSIS_H
 #define __CHASSIS_H
 
-#define R_CHASSIS_WHEEL       0.07625f            //µ¥Î»:Ã×
-#define CHASSIS_REDUCTION     19.2f               //¼õËÙ±È
-#define RC_MAX                660.0f              //Ò£¿ØÆ÷×î´ó¿Ø·ù
-#define YAW_FLIP_RAD          (95.0f*PI)/180.0f	  //µôÍ·ÁÙ½ç½Ç(rad)
-#define GYRO_YAW_SENS         180.0f              //ÍÓÂÝÒÇ Yaw ×î´ó½ÇËÙ¶È(¶È/Ãë)      
-#define CTRL_DT               0.001f              //¿ØÖÆÖÜÆÚ(s)
-/*------------ÍÓÂÝÒÇÄ£Ê½²ÎÊý------------*/
+#define R_CHASSIS_WHEEL       0.07625f            //å•ä½:ç±³
+#define CHASSIS_REDUCTION     19.2f               //å‡é€Ÿæ¯”
+#define RC_MAX                660.0f              //é¥æŽ§å™¨æœ€å¤§æŽ§å¹…
+#define YAW_FLIP_RAD          (95.0f*PI)/180.0f	  //æŽ‰å¤´ä¸´ç•Œè§’(rad)
+#define GYRO_YAW_SENS         180.0f              //é™€èžºä»ª Yaw æœ€å¤§è§’é€Ÿåº¦(åº¦/ç§’)      
+#define CTRL_DT               0.001f              //æŽ§åˆ¶å‘¨æœŸ(s)
+/*------------é™€èžºä»ªæ¨¡å¼å‚æ•°------------*/
 #define FOLLOW_TARGET_DEG     -22.316185f  
 #define FOLLOW_BACK_DEG       157.683815f  
-#define FOLLOW_SWITCH_DEG     95.0f     		  //ÁÙ½çÆ«Àë½Ç(³¬¹ý->µôÍ·)
-#define FOLLOW_DEAD_DEG       3.0f      		  //ÍÓÂÝÒÇËÀÇø½Ç
-#define FOLLOW_FULL_DEG       30.0f     		  //ÂúËÙ¸úÔÆÌ¨´¥·¢½Ç
-#define FOLLOW_RAMP_S         0.1f      		  //¼Óµ½ÂúËÙËùÓÃÊ±¼ä
-/*------------Ð¡ÍÓÂÝÄ£Ê½²ÎÊý------------*/
-#define FOLLOW_WZ_MAX         1.5f      	      //¸úËæ×î´ó×Ô×ªÁ¿
-#define SPIN_WZ_MAX           1.5f 	 		      //×î´ó×ÔÐýÁ¿
+#define FOLLOW_SWITCH_DEG     95.0f     		  //ä¸´ç•Œåç¦»è§’(è¶…è¿‡->æŽ‰å¤´)
+#define FOLLOW_DEAD_DEG       3.0f      		  //é™€èžºä»ªæ­»åŒºè§’
+#define FOLLOW_FULL_DEG       30.0f     		  //æ»¡é€Ÿè·Ÿäº‘å°è§¦å‘è§’
+#define FOLLOW_RAMP_S         0.1f      		  //åŠ åˆ°æ»¡é€Ÿæ‰€ç”¨æ—¶é—´
+/*------------å°é™€èžºæ¨¡å¼å‚æ•°------------*/
+#define FOLLOW_WZ_MAX         1.5f      	      //è·Ÿéšæœ€å¤§è‡ªè½¬é‡
+#define SPIN_WZ_MAX           1.5f 	 		      //æœ€å¤§è‡ªæ—‹é‡
 
 void Chassis_ctrl(void);
 

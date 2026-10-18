@@ -1,4 +1,4 @@
-# �������ɵ��м��ļ�
+# 编译生成的中间文件
 *.o
 *.d
 *.crf
@@ -11,7 +11,7 @@
 *.lnp
 *.__i
 
-# Keil ������ʱ�ļ�
+# Keil 工程临时文件
 *.uvgui.*
 *.uvopt
 *.uvproj.bak
@@ -22,13 +22,13 @@
 *.htm
 *.iex
 
-# ����������ļ�
+# 调试器相关文件
 JLinkLog.txt
 JLinkSettings.ini
 *.ini
 *.cdb
 
-# Ŀ¼���ԣ��������ɵ��м��ļ��У�
+# 目录忽略（编译生成的中间文件夹）
 Objects/
 Listings/
 RTE/
@@ -36,6 +36,6 @@ _build/
 Debug/
 Release/
 
-# �༭��/IDE ��ʱ�ļ�
+# 编辑器/IDE 临时文件
 *.swp
 *~

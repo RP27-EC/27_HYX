@@ -22,11 +22,11 @@ void DEVICE_Init(void)
 	dev_list.rc_sen->init(dev_list.rc_sen);
 	imu_sensor.init(&imu_sensor);
 //	
-	/*µç»ú³õÊ¼»¯*/
+	/*ç”µæœºåˆå§‹åŒ–*/
 	Chassis_Group.group_init(&Chassis_Group);
 	Yaw_Motor.single_init(&Yaw_Motor);
 
-	/*²ÃÅĞÏµÍ³³õÊ¼»¯*/
+	/*è£åˆ¤ç³»ç»Ÿåˆå§‹åŒ–*/
 	My_Judge_Init();;
 	cap.init(&cap);
 }

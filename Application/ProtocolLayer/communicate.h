@@ -9,15 +9,15 @@
 #define ID_BOARD_RX2 0xC2
 
 typedef struct {
-    uint8_t gimbal_mode;  // 0->»úĞµ 1->ÍÓÂİ 2->Ë¯Ãß
-    uint8_t rc_online;    // Ò£¿ØÆ÷×´Ì¬
-    float yaw_mec_tar;    // »úĞµÄ£Ê½Ä¿±ê½Ç(rad)
-    float pitch_mec_tar;  // Pitch Ä¿±ê½Ç(rad)
+    uint8_t gimbal_mode;  // 0->æœºæ¢° 1->é™€èº 2->ç¡çœ 
+    uint8_t rc_online;    // é¥æ§å™¨çŠ¶æ€
+    float yaw_mec_tar;    // æœºæ¢°æ¨¡å¼ç›®æ ‡è§’(rad)
+    float pitch_mec_tar;  // Pitch ç›®æ ‡è§’(rad)
 }Board_Tx_t;
 
 typedef struct {
-    float yaw_mec;        // ÔÆÌ¨µç»úÏà¶Ô½Ç¶È(rad)
-    float yaw_imu;        // IMU ¾ø¶Ô Yaw (rad)
+    float yaw_mec;        // äº‘å°ç”µæœºç›¸å¯¹è§’åº¦(rad)
+    float yaw_imu;        // IMU ç»å¯¹ Yaw (rad)
 	uint16_t heartbeat;
 } Board_Rx_t;
 

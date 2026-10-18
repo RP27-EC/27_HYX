@@ -12,11 +12,11 @@ static float    uint_to_float(uint16_t x_int,float x_min,float x_max,uint8_t bit
 
 void Board_Send_To_C(void)
 {
-    //��ģʽ��״̬
+    //发模式和状态
     tx_buf1[0]=Board_Tx.gimbal_mode;
     tx_buf1[1]=Board_Tx.rc_online;
     CAN_SendData(&hfdcan2,ID_BOARD_TX1,tx_buf1);
-    //��Ŀ��ֵ
+    //发目标值
     uint16_t t1=float_to_uint(Board_Tx.yaw_mec_tar,-PI,PI,16);
     uint16_t t2=float_to_uint(Board_Tx.pitch_mec_tar,-PI,PI,16);
     tx_buf2[0]=(t1>>8)&0xFF;

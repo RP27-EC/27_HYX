@@ -94,7 +94,7 @@ void Chassis_ctrl(void)
 		float wz= DeathZoom(rc_sensor.info->ch0/RC_MAX,0.0f,0.1f)*MAX_SPIN_SPEED;
 		if(Gimbal_Yaw.mode==YAW_GYRO)
 		{
-			if(RC_SW1_VALUE==RC_SW_DOWN) wz=chassis_spin();
+			if(RC_SW2_VALUE==RC_SW_DOWN) wz=chassis_spin();
 			else
 			{
 				wz=chassis_follow_gimbal();
@@ -107,7 +107,7 @@ void Chassis_ctrl(void)
 			spin_wz=0.0f;
 		}
 		//小陀螺速度分解->合速度指向对齐位置
-		if(Gimbal_Yaw.mode==YAW_GYRO && RC_SW1_VALUE==RC_SW_DOWN)
+		if(Gimbal_Yaw.mode==YAW_GYRO && RC_SW2_VALUE==RC_SW_DOWN)
 		{
 			float a=Board_Rx.yaw_mec;
 			float cosa=arm_cos_f32(a);
@@ -117,7 +117,7 @@ void Chassis_ctrl(void)
 			vx=vx_r;
 			vy=vy_r;
 		}
-		if((Gimbal_Yaw.mode==YAW_GYRO)?((RC_SW1_VALUE!=RC_SW_DOWN)&&fol_tgt_deg>0.0f)
+		if((Gimbal_Yaw.mode==YAW_GYRO)?((RC_SW2_VALUE!=RC_SW_DOWN)&&fol_tgt_deg>0.0f)
 		                              :(Gimbal_Yaw.posi==YAW_BACK))
 		{
 			vx=-vx;

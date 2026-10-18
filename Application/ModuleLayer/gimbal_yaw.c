@@ -53,9 +53,9 @@ static void Gimbal_Yaw_Update(Gimbal_Yaw_t *Gimbal_Yaw)
 	   rc_sensor.work_state==DEV_OFFLINE||
 	   RC_SW1_VALUE==RC_SW_UP||Board_Rx.heartbeat>100)
          Gimbal_Yaw->mode=YAW_SLEEP;
-    else if(RC_SW2_VALUE==RC_SW_DOWN)
-         Gimbal_Yaw->mode=YAW_GYRO;      //右拨下位->陀螺仪模式
-    else Gimbal_Yaw->mode=YAW_MEC;       //  上中位->机械模式
+    else if(RC_SW2_VALUE==RC_SW_UP)		//右拨上位->机械
+         Gimbal_Yaw->mode=YAW_MEC;      //    中位->陀螺仪 
+    else Gimbal_Yaw->mode=YAW_GYRO;     //    下位->小陀螺 
 	//机械模式拨轮上拨实现掉头
 	if(rc_sensor.info->thumbwheel.step[RC_TB_UP]!=up_step_last)
     {

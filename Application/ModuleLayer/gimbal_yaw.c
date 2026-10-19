@@ -6,8 +6,8 @@
 Gimbal_Yaw_t Gimbal_Yaw;           
 								   
 static float gyro_tar_deg=0.0f;    //陀螺仪模式目标角(度) 
-static uint8_t  up_step_last=0;    //上一次的拨轮上拨状态
-static uint8_t  u_turn_hold=0;     //掉头进行标识->防自动双稳态翻回
+static uint8_t up_step_last=0;     //上一次的拨轮上拨状态
+static uint8_t u_turn_hold=0;      //掉头进行标识->防自动双稳态翻回
 static uint16_t u_turn_tick=0;	   //掉头超时计数
 
 static void Yaw_Mec_Target_Config(void);

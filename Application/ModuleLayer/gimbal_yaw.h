@@ -3,8 +3,8 @@
 
 #include "communicate.h"
 
-#define YAW_FRONT_RAD   (-22.316185f*PI/180.0f) //电池仓角度
-#define YAW_BACK_RAD    (157.683815f*PI/180.0f)
+#define YAW_FRONT_RAD  (-22.316185f*PI/180.0f)  //电池仓角度
+#define YAW_BACK_RAD   (157.683815f*PI/180.0f)
 
 typedef enum {
     YAW_MEC,

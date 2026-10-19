@@ -17,7 +17,7 @@ typedef struct {
 
 typedef struct {
     float yaw_mec;        // 云台电机相对角度(rad)
-    float yaw_imu;        // IMU 绝对 Yaw (rad)
+    float yaw_imu;        // IMU 绝对航向角(rad)
 	uint16_t heartbeat;
 } Board_Rx_t;
 

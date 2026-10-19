@@ -56,7 +56,7 @@ static float chassis_follow_gimbal(void)
 static float chassis_spin(void)
 {
     float want=SPIN_WZ_MAX;
-    float step=fabsf(SPIN_WZ_MAX)*(CTRL_DT/FOLLOW_RAMP_S);
+    float step=SPIN_WZ_MAX*(CTRL_DT/FOLLOW_RAMP_S);
     if(want>spin_wz+step) want=spin_wz+step;
     if(want<spin_wz-step) want=spin_wz-step;
     spin_wz=want;

@@ -68,7 +68,7 @@ static void Gimbal_Yaw_Update(Gimbal_Yaw_t *gimbal)
         C_Board_Rx.heartbeat++;
         return;
     }
-	//必须陀螺仪零偏校准完才能跑陀螺模式
+	//必须陀螺仪零偏校准完才能进陀螺仪模式
     if(C_Board_Rx.gimbal_mode==YAW_IMU&& 
 	   imu_sensor.work_state.cali_end)
         mode=YAW_IMU;
